@@ -1,0 +1,14 @@
+---
+description: Node.js engine requirement for Astro 6 in this repo
+globs: package.json
+alwaysApply: false
+---
+
+# Node version
+
+`package.json` sets **`engines.node": ">=22.12.0"`** (Astro 6 requirement).
+
+- Local **`npm run build`** / **`astro`** may fail on older Node (e.g. 20.x) with an engine error.
+- Use **Node 22.12+** locally, or run commands in a **Node 22** container (see `docker-bind-mount-node` rule).
+
+Do not lower the engine range to silence errors without confirming Astro compatibility.

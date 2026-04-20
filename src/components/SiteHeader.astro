@@ -1,0 +1,33 @@
+---
+const navItems = [
+	{ href: '/', label: 'Home' },
+	{ href: '/hosting', label: 'Hosting' },
+	{ href: '/web-design', label: 'Web Design' },
+	{ href: '/process', label: 'Process' },
+	{ href: '/contact', label: 'Contact' },
+	{ href: '/privacy-policy', label: 'Privacy' },
+];
+---
+
+<header class="sticky top-0 z-50 border-b border-slate-200 bg-white">
+	<div class="layout-container flex min-h-[4.5rem] flex-wrap items-center justify-between gap-4 py-3">
+		<a class="flex items-center gap-2 font-bold text-slate-900 no-underline" href="/" aria-label="Digmar Web Solutions home">
+			<span class="grid size-8 place-items-center rounded-md bg-emerald-600 text-xs font-bold text-white">DW</span>
+			<span class="text-base sm:text-lg">Digmar Web Solutions</span>
+		</a>
+		<nav class="order-3 w-full overflow-x-auto pb-1 md:order-none md:w-auto md:overflow-visible md:pb-0" aria-label="Primary">
+			<ul class="flex list-none gap-4 p-0 whitespace-nowrap md:gap-5">
+				{
+					navItems.map((item) => (
+						<li>
+							<a class="text-sm font-medium text-slate-600 no-underline hover:text-slate-900" href={item.href}>
+								{item.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</nav>
+		<a class="btn btn-primary hidden md:inline-flex" href="/contact">Get a Free Quote</a>
+	</div>
+</header>

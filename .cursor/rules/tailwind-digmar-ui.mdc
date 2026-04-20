@@ -1,0 +1,17 @@
+---
+description: Shared Tailwind layer classes and marketing UI conventions for this site
+globs: src/**/*.{astro,css}
+alwaysApply: false
+---
+
+# Digmar UI tokens (`src/styles/global.css`)
+
+Shared `@layer components` utilities:
+
+- **`.layout-container`** — max width + horizontal padding
+- **`.layout-section`** — vertical section spacing
+- **`.card-surface`** — white card, border, light shadow
+- **`.text-eyebrow`** — small uppercase accent
+- **`.btn`**, **`.btn-primary`**, **`.btn-secondary`** — solid emerald primary; neutral secondary
+
+Prefer these over one-off duplicate class strings for consistency. Marketing pages: light backgrounds (`bg-slate-50`, white cards), minimal gradients.

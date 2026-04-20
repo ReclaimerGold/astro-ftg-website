@@ -1,0 +1,22 @@
+---
+description: Avoid root-owned files when using Docker with bind-mounted project directories
+alwaysApply: true
+---
+
+# Docker + bind mounts (`node_modules`, `dist`)
+
+Running `docker run -v "$PWD:/app" ...` as **root** writes **`node_modules/`**, **`dist/`**, and cache dirs as **root:root** on the host. The local user then gets **`EACCES`** on `npm install` / writes.
+
+**Preferred:** run the container as the host user:
+
+```bash
+docker run --rm -u "$(id -u):$(id -g)" -v "$PWD:/app" -w /app node:22-bookworm bash -lc "npm ci && npm run build"
+```
+
+**If already polluted:** fix ownership once (from project root):
+
+```bash
+sudo chown -R "$(id -un):$(id -gn)" node_modules dist .astro
+```
+
+Do not mix repeated `sudo chown` with care—prefer `-u "$(id -u):$(id -g)"` for future container runs.

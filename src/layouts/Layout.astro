@@ -1,23 +1,77 @@
+---
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+	path?: string;
+	ogType?: 'website' | 'article';
+	schema?: Record<string, unknown> | null;
+	noindex?: boolean;
+}
+
+const {
+	title = 'Digmar Web Solutions | Fast Websites, Managed Hosting',
+	description = 'Digmar Web Solutions helps local service businesses get more calls with fast websites, managed hosting, and done-for-you updates.',
+	path = '/',
+	ogType = 'website',
+	schema = null,
+	noindex = false,
+} = Astro.props;
+
+const siteUrl = 'https://digmarwebsolutions.com';
+const canonicalUrl = new URL(path, siteUrl).toString();
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+const gscVerification = import.meta.env.PUBLIC_GSC_VERIFICATION;
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalUrl} />
+		<meta property="og:type" content={ogType} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:site_name" content="Digmar Web Solutions" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		{noindex && <meta name="robots" content="noindex, nofollow" />}
+		{gscVerification && <meta name="google-site-verification" content={gscVerification} />}
+		{
+			schema && (
+				<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+			)
+		}
+		{
+			gaMeasurementId && (
+				<>
+					<script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+					<script
+						set:html={`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${gaMeasurementId}');`}
+					/>
+				</>
+			)
+		}
 	</head>
-	<body>
-		<slot />
+	<body class="min-h-screen">
+		<SiteHeader />
+		<main class="w-full">
+			<slot />
+		</main>
+		<SiteFooter />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

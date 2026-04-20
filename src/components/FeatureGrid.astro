@@ -1,0 +1,35 @@
+---
+interface Feature {
+	title: string;
+	description: string;
+}
+
+interface Props {
+	eyebrow?: string;
+	title: string;
+	intro: string;
+	features: Feature[];
+}
+
+const { eyebrow = 'Why Digmar', title, intro, features } = Astro.props;
+---
+
+<section class="layout-section">
+	<div class="layout-container">
+		<div class="mb-10 max-w-3xl">
+			<p class="text-eyebrow">{eyebrow}</p>
+			<h2 class="mt-2">{title}</h2>
+			<p class="mt-3 text-base leading-relaxed text-slate-600">{intro}</p>
+		</div>
+		<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+			{
+				features.map((feature) => (
+					<article class="card-surface flex flex-col gap-2">
+						<h3>{feature.title}</h3>
+						<p class="m-0 text-sm leading-relaxed text-slate-600">{feature.description}</p>
+					</article>
+				))
+			}
+		</div>
+	</div>
+</section>

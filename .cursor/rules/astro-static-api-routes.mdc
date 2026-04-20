@@ -1,0 +1,12 @@
+---
+description: Static Astro output, API routes, and contact form expectations
+globs: src/pages/api/**/*.ts
+alwaysApply: false
+---
+
+# API routes with `output: static`
+
+- Astro may probe **`GET`** during static generation. If only **`POST`** is exported, the build can warn. Prefer adding a small **`GET`** that returns **405** + `Allow: POST` for non-GET semantics, or document intentional behavior.
+- **Pure static hosting** cannot execute server **`POST`** handlers. For live Mailgun (or similar) from the deployed site, use an **SSR adapter**, **hybrid output**, or a **serverless function** / external form endpoint—see project skill `astro-static-forms`.
+
+Keep handlers minimal; validate input server-side; never log secrets.

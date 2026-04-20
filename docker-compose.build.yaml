@@ -1,0 +1,22 @@
+# Local / CI: build the image from the Dockerfile, tag, then run.
+#   docker compose -f docker-compose.build.yaml up --build
+#
+# Produces image name digmar-web-solutions:local by default.
+#
+version: "3.8"
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: ${DIGMAR_LOCAL_IMAGE:-digmar-web-solutions:local}
+    restart: unless-stopped
+    ports:
+      - "${DIGMAR_PORT:-8080}:80"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s

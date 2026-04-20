@@ -1,0 +1,53 @@
+@import 'tailwindcss';
+
+@layer base {
+	html {
+		@apply antialiased;
+	}
+	body {
+		@apply bg-slate-50 text-slate-800;
+	}
+	main {
+		@apply block min-h-[40vh];
+	}
+	a {
+		@apply text-inherit;
+	}
+	h1 {
+		@apply text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl;
+	}
+	h2 {
+		@apply text-2xl font-bold tracking-tight text-slate-900 sm:text-3xl;
+	}
+	h3 {
+		@apply text-lg font-semibold text-slate-900;
+	}
+}
+
+@layer components {
+	.layout-container {
+		@apply mx-auto w-full max-w-6xl px-4 sm:px-6;
+	}
+	.layout-section {
+		@apply py-12 md:py-16 lg:py-20;
+	}
+	.card-surface {
+		@apply rounded-lg border border-slate-200 bg-white p-6 shadow-sm;
+	}
+	.text-eyebrow {
+		@apply text-xs font-bold uppercase tracking-wider text-emerald-800;
+	}
+	.btn {
+		@apply inline-flex items-center justify-center rounded-md border px-4 py-2.5 text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 focus-visible:ring-offset-2;
+	}
+	.btn-primary {
+		@apply border-emerald-600 bg-emerald-600 text-white hover:bg-emerald-700;
+	}
+	.btn-secondary {
+		@apply border-slate-300 bg-white text-slate-800 hover:bg-slate-50;
+	}
+	/* Absolutely fills a relative, sized parent — object-cover keeps aspect ratio (no stretch/skew). */
+	.img-cover {
+		@apply absolute inset-0 h-full w-full max-h-none max-w-none object-cover object-center;
+	}
+}

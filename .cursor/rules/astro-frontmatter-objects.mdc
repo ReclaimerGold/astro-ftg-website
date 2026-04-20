@@ -1,0 +1,28 @@
+---
+description: Valid object literal closings in Astro frontmatter (schema, JSON-LD, config objects)
+globs: src/**/*.astro
+alwaysApply: false
+---
+
+# Astro frontmatter objects
+
+When defining JavaScript objects in `---` frontmatter (e.g. `organizationSchema`, service schema, props):
+
+- Close an **object** with **`};`**
+- Close an **array** with **`];`**
+
+Common mistake: after `offers: [ ... ],` the outer `const foo = { ...` must end with **`};`**, not **`];`**.
+
+```javascript
+// BAD — breaks build (Expected identifier but found "]")
+const org = {
+  offers: [{ price: '20' }],
+];
+
+// GOOD
+const org = {
+  offers: [{ price: '20' }],
+};
+```
+
+After edits, run `npm run build` (Node >= 22.12 per `package.json` engines).

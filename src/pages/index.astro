@@ -1,11 +1,125 @@
 ---
-import Welcome from '../components/Welcome.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import Hero from '../components/Hero.astro';
 import Layout from '../layouts/Layout.astro';
+import PricingCards from '../components/PricingCards.astro';
+import ProcessTimeline from '../components/ProcessTimeline.astro';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const homepageFeatures = [
+	{
+		title: 'Built to load around 80% faster than WordPress',
+		description: 'Faster load times mean fewer people bounce and more customers stick around long enough to call.',
+	},
+	{
+		title: 'Hosting and speed handled for you',
+		description: 'We manage your Nginx hosting, caching, and updates so you do not have to babysit your website.',
+	},
+	{
+		title: 'Ready for Cloudflare and edge tools',
+		description: 'If your business needs advanced integrations later, your site is ready without a full rebuild.',
+	},
+	{
+		title: 'SEO done from day one',
+		description: 'We build your pages with sales copy, local search setup, and tracking so your site can actually bring in leads.',
+	},
+	{
+		title: 'Two-week turnaround',
+		description: 'Most sites are delivered in about two weeks, with your first full preview in week one.',
+	},
+	{
+		title: 'Hands-free monthly management',
+		description: 'Once your site is live, we keep it updated so you can stay focused on running your business.',
+	},
+];
+
+const organizationSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Organization',
+	name: 'Digmar Web Solutions',
+	url: 'https://digmarwebsolutions.com',
+	description:
+		'Digmar Web Solutions offers custom web design, managed Nginx hosting, and SEO-first website development.',
+	areaServed: 'Worldwide',
+	offers: [
+		{
+			'@type': 'Offer',
+			name: 'Launch Hosting Plan',
+			price: '20',
+			priceCurrency: 'USD',
+		},
+		{
+			'@type': 'Offer',
+			name: 'Growth Hosting Plan',
+			price: '50',
+			priceCurrency: 'USD',
+		},
+		{
+			'@type': 'Offer',
+			name: 'Scale Hosting Plan',
+			price: '100',
+			priceCurrency: 'USD',
+		},
+	],
+};
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+	title="Digmar Web Solutions | Fast Websites and Managed Hosting"
+	description="Digmar Web Solutions helps blue-collar businesses get more calls with fast websites, managed hosting, and done-for-you updates."
+	path="/"
+	schema={organizationSchema}
+>
+	<Hero
+		eyebrow="Digmar Web Solutions"
+		title="If your website is slow, confusing, or not bringing leads in, we fix that"
+		description="We build fast, clean websites for service businesses like carpet cleaners, roofers, HVAC, and contractors so more visitors turn into calls."
+		primaryCtaLabel="Get a Free Quote"
+		primaryCtaHref="/contact"
+		secondaryCtaLabel="View Monthly Plans"
+		secondaryCtaHref="/hosting"
+	/>
+	<FeatureGrid
+		eyebrow="Built for Results"
+		title="Everything you need to win more local jobs online"
+		intro="No buzzwords. No confusing process. Just a better website and a team that handles the tech for you."
+		features={homepageFeatures}
+	/>
+	<section class="layout-section border-t border-slate-200 bg-white">
+		<div class="layout-container grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+			<div class="relative aspect-[4/3] overflow-hidden rounded-lg border border-slate-200 bg-slate-100">
+				<img
+					class="img-cover"
+					src="/placeholder-photo.svg"
+					alt="Local service business website mockup placeholder"
+					loading="lazy"
+					width="800"
+					height="600"
+				/>
+			</div>
+			<div class="card-surface flex flex-col gap-4">
+				<p class="text-eyebrow">Built For Service Pros</p>
+				<h2>Show your work, build trust, and make it easy to call</h2>
+				<p class="m-0 text-base leading-relaxed text-slate-600">
+					Your website should prove you are the right choice in under 10 seconds. We structure every page to highlight your services,
+					your local credibility, and your strongest call-to-action.
+				</p>
+				<a class="btn btn-primary w-fit" href="/contact">See What This Looks Like</a>
+			</div>
+		</div>
+	</section>
+	<PricingCards />
+	<ProcessTimeline />
+	<section class="layout-section border-t border-slate-200 bg-slate-50">
+		<div class="layout-container card-surface max-w-4xl flex flex-col gap-4">
+			<p class="text-eyebrow">Next Step</p>
+			<h2>Tell us about your business and we will show you the fastest way to get more leads</h2>
+			<p class="m-0 text-base leading-relaxed text-slate-600">
+				You will get clear pricing, a simple timeline, and a website plan built around your service area and ideal customers.
+			</p>
+			<div class="flex flex-wrap gap-3 pt-2">
+				<a class="btn btn-primary" href="/contact">Get a Free Quote</a>
+				<a class="btn btn-secondary" href="/web-design">See Web Design Service</a>
+			</div>
+		</div>
+	</section>
 </Layout>

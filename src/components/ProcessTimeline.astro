@@ -1,0 +1,42 @@
+---
+const steps = [
+	{
+		title: '1. Quick kickoff call',
+		body: 'You tell us what you do, where you serve, and what kind of jobs you want more of.',
+	},
+	{
+		title: '2. First draft in week one',
+		body: 'You get a full walkthrough of your new website in week one so changes can be made early.',
+	},
+	{
+		title: '3. Build and dial it in',
+		body: 'We finish the site, write strong sales copy, and set up local SEO basics so customers can find you.',
+	},
+	{
+		title: '4. Launch in about two weeks',
+		body: 'Once approved, we launch your site and manage everything moving forward so you can stay focused on jobs.',
+	},
+];
+---
+
+<section class="layout-section">
+	<div class="layout-container">
+		<div class="mb-10 max-w-3xl">
+			<p class="text-eyebrow">Delivery Process</p>
+			<h2 class="mt-2">No runaround. Clear steps. Fast launch.</h2>
+			<p class="mt-3 text-base leading-relaxed text-slate-600">
+				You always know what is happening, what we need from you, and when your site goes live.
+			</p>
+		</div>
+		<ol class="m-0 grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-4">
+			{
+				steps.map((step) => (
+					<li class="card-surface flex flex-col gap-2">
+						<h3>{step.title}</h3>
+						<p class="m-0 text-sm leading-relaxed text-slate-600">{step.body}</p>
+					</li>
+				))
+			}
+		</ol>
+	</div>
+</section>

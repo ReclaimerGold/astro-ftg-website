@@ -1,0 +1,108 @@
+---
+import FeatureGrid from '../components/FeatureGrid.astro';
+import Layout from '../layouts/Layout.astro';
+
+const seoFeatures = [
+	{
+		title: 'Sales-focused page copy',
+		description: 'We write clear, plain-language copy that helps visitors trust you and take the next step.',
+	},
+	{
+		title: 'Google-friendly page setup',
+		description: 'Your pages include the right titles, descriptions, and structure to help with local visibility.',
+	},
+	{
+		title: 'Tracking ready at launch',
+		description: 'We prep your site for Google Analytics and Search Console so you can see what is working.',
+	},
+];
+
+const designServiceSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Service',
+	name: 'Custom Website Design',
+	provider: {
+		'@type': 'Organization',
+		name: 'Digmar Web Solutions',
+	},
+	description:
+		'Custom web design for local service businesses focused on speed, trust, and more inbound leads.',
+	serviceType: 'Web Design and Development',
+	areaServed: 'Worldwide',
+};
+---
+
+<Layout
+	title="Custom Web Design | Digmar Web Solutions"
+	description="Custom websites for local service businesses that look professional, load fast, and turn more visitors into leads."
+	path="/web-design"
+	schema={designServiceSchema}
+>
+	<section class="layout-section border-b border-slate-200 bg-white">
+		<div class="layout-container flex flex-col gap-10">
+			<div class="max-w-3xl">
+				<p class="text-eyebrow">Custom Web Design</p>
+				<h1 class="mt-2">Your website should sell your service before you answer the phone</h1>
+				<p class="mt-4 text-base leading-relaxed text-slate-600">
+					We build custom websites that look trustworthy, explain your offer clearly, and load around 80% faster than typical WordPress
+					sites.
+				</p>
+			</div>
+			<div class="grid gap-6 md:grid-cols-2">
+				<article class="card-surface flex flex-col gap-2">
+					<h3>Built for calls and quote requests</h3>
+					<p class="m-0 text-sm leading-relaxed text-slate-600">
+						We guide visitors to action with clear headlines, strong offers, and simple call-to-action buttons.
+					</p>
+				</article>
+				<article class="card-surface flex flex-col gap-2">
+					<h3>Fast on mobile where customers search</h3>
+					<p class="m-0 text-sm leading-relaxed text-slate-600">
+						Your site is built for speed from the start so people do not leave before they even read your services.
+					</p>
+				</article>
+			</div>
+		</div>
+	</section>
+	<section class="layout-section">
+		<div class="layout-container grid items-center gap-8 lg:grid-cols-5 lg:gap-10">
+			<div class="card-surface flex flex-col gap-4 lg:col-span-3">
+				<p class="text-eyebrow">Before And After</p>
+				<h2>Turn an outdated site into a lead machine</h2>
+				<p class="m-0 text-base leading-relaxed text-slate-600">
+					Most service websites fail because they are cluttered, slow, and unclear. We rebuild your pages so customers instantly
+					understand what you do and how to book.
+				</p>
+				<a class="btn btn-primary w-fit" href="/contact">Request a Website Makeover</a>
+			</div>
+			<div class="relative aspect-[4/3] overflow-hidden rounded-lg border border-slate-200 bg-slate-100 lg:col-span-2">
+				<img
+					class="img-cover"
+					src="/placeholder-photo.svg"
+					alt="Website redesign preview placeholder"
+					loading="lazy"
+					width="640"
+					height="480"
+				/>
+			</div>
+		</div>
+	</section>
+	<FeatureGrid
+		eyebrow="Built-In SEO"
+		title="We set up your website to be found and trusted"
+		intro="We handle the behind-the-scenes SEO setup while keeping the message simple and customer-friendly."
+		features={seoFeatures}
+	/>
+	<section class="layout-section border-t border-slate-200 bg-slate-50">
+		<div class="layout-container card-surface max-w-3xl flex flex-col gap-4">
+			<h2>Still using an outdated site that is not producing leads?</h2>
+			<p class="m-0 text-base leading-relaxed text-slate-600">
+				We can rebuild your current site into a cleaner, faster version without making your business start from scratch.
+			</p>
+			<div class="flex flex-wrap gap-3 pt-2">
+				<a class="btn btn-primary" href="/contact">Request a Free Website Review</a>
+				<a class="btn btn-secondary" href="/process">See the Process</a>
+			</div>
+		</div>
+	</section>
+</Layout>

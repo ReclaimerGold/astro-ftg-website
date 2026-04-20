@@ -1,0 +1,13 @@
+.git
+.github
+.cursor
+.astro
+.vscode
+dist
+node_modules
+*.md
+!README.md
+.env
+.env.*
+!.env.example
+npm-debug.log*

@@ -1,0 +1,56 @@
+<form class="card-surface flex flex-col gap-4" method="POST" action="/api/contact">
+	<h2 class="text-xl font-bold text-slate-900">Get your free website game plan</h2>
+	<label class="grid gap-1.5 text-sm font-semibold text-slate-800">
+		Name
+		<input
+			class="rounded-md border border-slate-300 bg-white px-3 py-2.5 text-slate-900 shadow-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+			type="text"
+			name="name"
+			autocomplete="name"
+			required
+		/>
+	</label>
+	<label class="grid gap-1.5 text-sm font-semibold text-slate-800">
+		Email
+		<input
+			class="rounded-md border border-slate-300 bg-white px-3 py-2.5 text-slate-900 shadow-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+			type="email"
+			name="email"
+			autocomplete="email"
+			required
+		/>
+	</label>
+	<label class="grid gap-1.5 text-sm font-semibold text-slate-800">
+		Company
+		<input
+			class="rounded-md border border-slate-300 bg-white px-3 py-2.5 text-slate-900 shadow-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+			type="text"
+			name="company"
+			autocomplete="organization"
+		/>
+	</label>
+	<label class="grid gap-1.5 text-sm font-semibold text-slate-800">
+		Current website URL
+		<input
+			class="rounded-md border border-slate-300 bg-white px-3 py-2.5 text-slate-900 shadow-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+			type="url"
+			name="website"
+			placeholder="https://example.com"
+		/>
+	</label>
+	<label class="grid gap-1.5 text-sm font-semibold text-slate-800">
+		Project goals
+		<textarea
+			class="min-h-[120px] resize-y rounded-md border border-slate-300 bg-white px-3 py-2.5 text-slate-900 shadow-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+			name="message"
+			rows="5"
+			placeholder="Tell us what you do, your service area, and what kind of leads you want more of."
+			required></textarea>
+	</label>
+	<input class="hidden" type="text" name="company_site" tabindex="-1" autocomplete="off" aria-hidden="true" />
+	<button class="btn btn-primary w-full cursor-pointer sm:w-auto" type="submit">Get My Free Quote</button>
+	<p class="m-0 text-xs leading-relaxed text-slate-500">
+		By submitting, you agree to our <a class="text-emerald-800 underline hover:text-emerald-900" href="/privacy-policy">Privacy Policy</a>.
+		We will only contact you about your request.
+	</p>
+</form>

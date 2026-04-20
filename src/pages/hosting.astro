@@ -1,0 +1,93 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PricingCards from '../components/PricingCards.astro';
+
+const hostingServiceSchema = {
+	'@context': 'https://schema.org',
+	'@type': 'Service',
+	name: 'Managed Web Hosting',
+	provider: {
+		'@type': 'Organization',
+		name: 'Digmar Web Solutions',
+	},
+	description:
+		'Managed hosting with built-in speed tuning, monthly design updates, and hands-free maintenance.',
+	offers: [
+		{ '@type': 'Offer', price: '20', priceCurrency: 'USD', name: 'Launch' },
+		{ '@type': 'Offer', price: '50', priceCurrency: 'USD', name: 'Growth' },
+		{ '@type': 'Offer', price: '100', priceCurrency: 'USD', name: 'Scale' },
+	],
+};
+---
+
+<Layout
+	title="Managed Hosting Plans | Digmar Web Solutions"
+	description="Simple monthly hosting plans for local service businesses, with done-for-you updates and ongoing website support."
+	path="/hosting"
+	schema={hostingServiceSchema}
+>
+	<section class="layout-section border-b border-slate-200 bg-white">
+		<div class="layout-container flex flex-col gap-10">
+			<div class="max-w-3xl">
+				<p class="text-eyebrow">Managed Hosting</p>
+				<h1 class="mt-2">Pick a monthly plan and let us handle your website</h1>
+				<p class="mt-4 text-base leading-relaxed text-slate-600">
+					Every Digmar plan includes hosting, speed tuning, and monthly design changes so your site keeps up with your business.
+				</p>
+			</div>
+			<div class="grid gap-6 md:grid-cols-3">
+				<article class="card-surface flex flex-col gap-2">
+					<h3>Fast loading pages</h3>
+					<p class="m-0 text-sm leading-relaxed text-slate-600">
+						We run your site on a high-performance setup with Nginx and caching so customers are not waiting around.
+					</p>
+				</article>
+				<article class="card-surface flex flex-col gap-2">
+					<h3>Monthly updates included</h3>
+					<p class="m-0 text-sm leading-relaxed text-slate-600">
+						Need new photos, a seasonal offer, or service page changes? Your monthly plan already covers that.
+					</p>
+				</article>
+				<article class="card-surface flex flex-col gap-2">
+					<h3>Hands-free support</h3>
+					<p class="m-0 text-sm leading-relaxed text-slate-600">
+						We monitor and maintain everything behind the scenes so your team can stay focused on jobs and customers.
+					</p>
+				</article>
+			</div>
+		</div>
+	</section>
+	<section class="layout-section">
+		<div class="layout-container grid items-center gap-8 lg:grid-cols-5 lg:gap-10">
+			<div class="relative aspect-[4/3] overflow-hidden rounded-lg border border-slate-200 bg-slate-100 lg:col-span-2">
+				<img
+					class="img-cover"
+					src="/placeholder-photo.svg"
+					alt="Hosting dashboard placeholder image"
+					loading="lazy"
+					width="640"
+					height="480"
+				/>
+			</div>
+			<div class="card-surface flex flex-col gap-4 lg:col-span-3">
+				<p class="text-eyebrow">Why It Matters</p>
+				<h2>Slow websites lose jobs. Fast websites win trust.</h2>
+				<p class="m-0 text-base leading-relaxed text-slate-600">
+					Most local customers will not wait around for a site to load. We keep your pages fast and keep your content current so you are
+					not losing calls to competitors.
+				</p>
+				<a class="btn btn-primary w-fit" href="/contact">Get Hosting Help</a>
+			</div>
+		</div>
+	</section>
+	<PricingCards />
+	<section class="layout-section border-t border-slate-200 bg-slate-50">
+		<div class="layout-container card-surface max-w-3xl flex flex-col gap-4">
+			<h2>Need advanced integrations later?</h2>
+			<p class="m-0 text-base leading-relaxed text-slate-600">
+				Your site is built so Cloudflare Workers and edge tools can be added when your business needs them.
+			</p>
+			<a class="btn btn-primary w-fit" href="/contact">Talk Through Your Setup</a>
+		</div>
+	</section>
+</Layout>

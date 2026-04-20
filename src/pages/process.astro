@@ -1,0 +1,58 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ProcessTimeline from '../components/ProcessTimeline.astro';
+---
+
+<Layout
+	title="Our Web Design Process | Digmar Web Solutions"
+	description="A simple two-week process for local service businesses: kickoff, first preview, final build, and launch."
+	path="/process"
+>
+	<section class="layout-section border-b border-slate-200 bg-white">
+		<div class="layout-container max-w-3xl">
+			<p class="text-eyebrow">Project Delivery</p>
+			<h1 class="mt-2">Our process is simple, clear, and built for busy owners</h1>
+			<p class="mt-4 text-base leading-relaxed text-slate-600">
+				No complicated meetings and no long delays. You get a clear timeline and a working website fast.
+			</p>
+		</div>
+	</section>
+	<section class="layout-section">
+		<div class="layout-container grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
+			<div class="relative aspect-[4/3] overflow-hidden rounded-lg border border-slate-200 bg-slate-100">
+				<img
+					class="img-cover"
+					src="/placeholder-photo.svg"
+					alt="Project planning and review placeholder"
+					loading="lazy"
+					width="800"
+					height="600"
+				/>
+			</div>
+			<div class="card-surface flex flex-col gap-4">
+				<p class="text-eyebrow">Simple Collaboration</p>
+				<h2>You do not need to become a web expert</h2>
+				<p class="m-0 text-base leading-relaxed text-slate-600">
+					We keep feedback simple and focused: what to keep, what to change, and what helps you close more jobs. You approve the
+					direction, and we handle the heavy lifting.
+				</p>
+				<a class="btn btn-primary w-fit" href="/contact">Start My Project</a>
+			</div>
+		</div>
+	</section>
+	<ProcessTimeline />
+	<section class="layout-section border-t border-slate-200 bg-white">
+		<div class="layout-container grid gap-6 md:grid-cols-2">
+			<article class="card-surface flex flex-col gap-2">
+				<h2>Week one: plan and first preview</h2>
+				<p class="m-0 text-sm leading-relaxed text-slate-600">We gather what we need and show you your first full website draft in week one.</p>
+			</article>
+			<article class="card-surface flex flex-col gap-2">
+				<h2>Week two: final tweaks and launch</h2>
+				<p class="m-0 text-sm leading-relaxed text-slate-600">
+					After your feedback, we finalize the site, run quality checks, and launch it on your managed hosting plan.
+				</p>
+			</article>
+		</div>
+	</section>
+</Layout>

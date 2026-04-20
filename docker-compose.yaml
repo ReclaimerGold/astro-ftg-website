@@ -1,0 +1,24 @@
+# Production / Portainer (pull from GHCR): set DIGMAR_IMAGE to the published image.
+# Example: ghcr.io/myorg/my-repo:v1.0.0
+#
+# GHCR in Portainer: Registries → add ghcr.io (GitHub username + PAT with read:packages).
+# Do not use the `build` key here so Portainer only pulls the image.
+#
+# Local build + run: use docker-compose.build.yaml instead.
+#
+version: "3.8"
+
+services:
+  web:
+    image: ${DIGMAR_IMAGE:?Set DIGMAR_IMAGE to ghcr.io/owner/repo:tag (see README)}
+    restart: unless-stopped
+    ports:
+      - "${DIGMAR_PORT:-8080}:80"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    labels:
+      - "com.digmar.description=Digmar Web Solutions static site"
