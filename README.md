@@ -52,7 +52,7 @@ GitHub runs:
 
 ## Docker and GHCR
 
-- **`Dockerfile`**: multi-stage build (Node 22 → `npm run build` → nginx serves `dist/`).
+- **`Dockerfile`**: multi-stage build (Node 22 → `npm run build` → production `npm ci --omit=dev` → **Node** runs `dist/server/entry.mjs` on port 80 inside the container).
 - **`docker-compose.build.yaml`**: build and run locally (default **http://localhost:8080**):
 
   ```sh
@@ -61,6 +61,69 @@ GitHub runs:
   ```
 
 - **`docker-compose.yaml`**: **image-only** stack for **Portainer** — set **`DIGMAR_IMAGE`** to the GHCR image (see below). Do not add a `build:` section in Portainer if you only pull from the registry.
+
+Pass Mailgun and optional public env vars into the container at runtime (for example `environment:` or an env file in Portainer) so `POST /api/contact` and `POST /api/support` work in production.
+
+## Full server (Ubuntu LXC / VM)
+
+Production builds use **`output: 'server'`** with **`@astrojs/node`** (standalone). The app listens on a loopback port; **nginx** terminates HTTP/HTTPS and reverse-proxies to Node.
+
+### One-time bootstrap
+
+On a fresh **Ubuntu 24.04** (or similar) system, copy this repository (or download [`scripts/lxc-bootstrap.sh`](scripts/lxc-bootstrap.sh)) and run as **root**:
+
+```sh
+chmod +x scripts/lxc-bootstrap.sh
+sudo DIGMAR_REPO_URL='https://github.com/your-org/your-repo.git' ./scripts/lxc-bootstrap.sh
+```
+
+- **Public HTTPS repo**: set `DIGMAR_SKIP_GIT_AUTH=1` so the script does not prompt for credentials.
+- **Private HTTPS (GitHub)**: GitHub does **not** accept account passwords for Git over HTTPS. Use a **Personal Access Token** (classic: `repo`; fine-grained: repository contents read) and either:
+  - run interactively and enter username + token when prompted, or
+  - set `GIT_USER` and `GIT_TOKEN` (or `GITHUB_TOKEN`) in the environment before running.
+
+The script stores HTTPS credentials for the `web` user via `git credential` (for later `git pull` / [`scripts/lxc-deploy.sh`](scripts/lxc-deploy.sh)). **SSH** URLs (`git@github.com:…`) use your configured deploy keys or agent; no token prompts.
+
+Useful environment variables (all optional except the repo URL when not prompted):
+
+| Variable | Meaning |
+|----------|---------|
+| `DIGMAR_REPO_URL` | Clone URL (HTTPS or SSH) |
+| `DIGMAR_APP_DIR` | Install path (default `/home/web/apps/astro-ftg-website`) |
+| `DIGMAR_USER` | Unix user (default `web`) |
+| `DIGMAR_SERVICE_PORT` | Node listen port (default `4321`; nginx proxies here) |
+| `DIGMAR_SERVER_NAME` | nginx `server_name` (default `_`) |
+| `DIGMAR_SKIP_GIT_AUTH` | `1` to skip PAT prompts (public repos) |
+
+Bootstrap installs updates, **Node 22**, **nginx**, creates `systemd` unit **`digmar.service`**, enables it on boot, and copies [`.env.example`](.env.example) to `.env` if missing. Edit `.env` for Mailgun, then:
+
+```sh
+sudo systemctl restart digmar
+```
+
+### TLS (optional)
+
+```sh
+sudo apt install -y certbot python3-certbot-nginx
+sudo certbot --nginx -d your-domain.com
+```
+
+### Deploy / refresh (updates)
+
+After changing `master` / `main` on the server:
+
+```sh
+sudo ./scripts/lxc-deploy.sh
+```
+
+Schedule it with **cron** or a **systemd timer** (for example hourly) if you want automatic pulls from the default branch.
+
+### Proxmox notes
+
+- Set the CT **Start at boot** and give stable networking (static IP or DHCP reservation).
+- For **HA** between nodes, use Proxmox HA with **shared storage** for the CT disk if you expect failover; understand restart delays and quorum.
+- Use **backups** (`vzdump` on a schedule) for quick recovery.
+- Optional: HTTP health checks from an external monitor; `Restart=always` on `digmar.service` covers process crashes inside the guest.
 
 ### Publish to GitHub Container Registry
 

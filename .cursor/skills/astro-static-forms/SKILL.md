@@ -11,7 +11,7 @@ description: >-
 
 ## Context
 
-This repo uses **`output: static`** (default for static Astro). A **`POST`** handler under `src/pages/api/` works in **dev** and with a **Node/server adapter**; **pure static file hosts** only serve HTML/CSS/JS and cannot run the API route.
+This repo uses **`output: 'server'`** with **`@astrojs/node`** so **`POST`** handlers under `src/pages/api/` run in production. **Pure static file hosts** (upload-only `dist/`) cannot execute those routes; use this Node deployment, Docker, or an adapter/host that runs the server.
 
 ## Checklist when changing forms
 
