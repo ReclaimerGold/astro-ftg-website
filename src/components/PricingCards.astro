@@ -4,6 +4,7 @@ const plans = [
 		name: 'Launch',
 		price: '$20/mo',
 		changes: '1 design change each month',
+		specs: ['1 CPU max', '1 GB RAM', '15 GB storage', '~50k visitors / month'],
 		highlights: [
 			'Fast managed hosting with updates handled for you',
 			'Basic speed tuning and monthly site checkups',
@@ -14,6 +15,7 @@ const plans = [
 		name: 'Growth',
 		price: '$50/mo',
 		changes: '2 design changes each month',
+		specs: ['2 CPU max', '2 GB RAM', '50 GB storage', '~100k visitors / month'],
 		highlights: [
 			'Extra speed tuning for busier websites',
 			'Priority support when you need changes',
@@ -25,6 +27,7 @@ const plans = [
 		name: 'Scale',
 		price: '$100/mo',
 		changes: '3 design changes each month',
+		specs: ['4 CPU max', '4 GB RAM', '100 GB storage', '~200k visitors / month'],
 		highlights: [
 			'Highest-priority support and monthly improvements',
 			'Cloudflare and edge integration support included',
@@ -41,7 +44,7 @@ const plans = [
 			<h2 class="mt-2">Simple monthly plans, no tech headaches</h2>
 			<p class="mt-3 text-base leading-relaxed text-slate-600">
 				Pick the plan that fits your business. We host your site, keep it fast, and handle your included monthly
-				updates.
+				updates. <strong>No complicated admin interface or complicated portals, just humans and clear communication.</strong>
 			</p>
 		</div>
 		<div class="grid gap-6 md:grid-cols-3">
@@ -49,24 +52,40 @@ const plans = [
 				plans.map((plan) => (
 					<article
 						class:list={[
-							'card-surface flex flex-col gap-3',
-							plan.popular && 'border-2 border-emerald-600 ring-1 ring-emerald-600',
+							'flex h-full flex-col rounded-xl border border-slate-200 bg-white p-6 shadow-sm',
+							plan.popular && 'border-2 border-emerald-600 shadow-md shadow-emerald-100',
 						]}
 					>
-						{plan.popular && (
-							<p class="m-0 w-fit rounded-full bg-emerald-600 px-2.5 py-1 text-xs font-bold text-white">
-								Most Popular
-							</p>
-						)}
-						<h3>{plan.name}</h3>
-						<p class="m-0 text-3xl font-extrabold text-slate-900">{plan.price}</p>
+						<div class="flex items-start justify-between gap-3">
+							<h3 class="m-0 text-xl">{plan.name}</h3>
+							{plan.popular && (
+								<p class="m-0 rounded-full bg-emerald-600 px-2.5 py-1 text-[0.65rem] font-bold uppercase tracking-wide text-white">
+									Most Popular
+								</p>
+							)}
+						</div>
+						<p class="mt-4 mb-1 text-3xl font-extrabold text-slate-900">{plan.price}</p>
 						<p class="m-0 text-sm text-slate-600">{plan.changes}</p>
-						<ul class="m-0 grid list-disc gap-2 pl-5 text-sm text-slate-600">
+						<div class="mt-5 rounded-lg border border-slate-200 bg-slate-50 p-4">
+							<p class="m-0 text-[0.65rem] font-bold uppercase tracking-wide text-slate-500">Hosting resources</p>
+							<ul class="mt-3 mb-0 grid list-none gap-2 p-0 text-sm font-medium text-slate-700">
+								{plan.specs.map((spec) => (
+									<li>{spec}</li>
+								))}
+							</ul>
+						</div>
+						<p class="mt-5 mb-0 text-[0.65rem] font-bold uppercase tracking-wide text-slate-500">Included with plan</p>
+						<ul class="mt-3 mb-0 grid list-none gap-2 p-0 text-sm text-slate-600">
 							{plan.highlights.map((line) => (
-								<li>{line}</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-1 inline-block size-1.5 shrink-0 rounded-full bg-emerald-600" aria-hidden="true"></span>
+									<span>{line}</span>
+								</li>
 							))}
 						</ul>
-						<a class="btn btn-secondary mt-auto w-full sm:w-auto" href="/contact">Start This Plan</a>
+						<a class:list={['btn mt-6 w-full', plan.popular ? 'btn-primary' : 'btn-secondary']} href="/contact">
+							Start This Plan
+						</a>
 					</article>
 				))
 			}

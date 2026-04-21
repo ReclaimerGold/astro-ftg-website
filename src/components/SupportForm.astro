@@ -1,0 +1,80 @@
+<form class="card-surface flex flex-col gap-4" method="POST" action="/api/support">
+	<h2 class="text-xl font-bold text-slate-900">Submit a support request</h2>
+	<label class="grid gap-1.5 text-sm font-semibold text-slate-800">
+		Name
+		<input
+			class="rounded-md border border-slate-300 bg-white px-3 py-2.5 text-slate-900 shadow-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+			type="text"
+			name="name"
+			autocomplete="name"
+			required
+		/>
+	</label>
+	<label class="grid gap-1.5 text-sm font-semibold text-slate-800">
+		Email
+		<input
+			class="rounded-md border border-slate-300 bg-white px-3 py-2.5 text-slate-900 shadow-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+			type="email"
+			name="email"
+			autocomplete="email"
+			required
+		/>
+	</label>
+	<label class="grid gap-1.5 text-sm font-semibold text-slate-800">
+		Business name
+		<input
+			class="rounded-md border border-slate-300 bg-white px-3 py-2.5 text-slate-900 shadow-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+			type="text"
+			name="company"
+			autocomplete="organization"
+		/>
+	</label>
+	<label class="grid gap-1.5 text-sm font-semibold text-slate-800">
+		Request type
+		<select
+			class="rounded-md border border-slate-300 bg-white px-3 py-2.5 text-slate-900 shadow-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+			name="request_type"
+			required
+		>
+			<option value="">Choose one</option>
+			<option value="technical-support">Technical support</option>
+			<option value="design-update">Design update</option>
+			<option value="both">Both technical and design</option>
+		</select>
+	</label>
+	<label class="grid gap-1.5 text-sm font-semibold text-slate-800">
+		Priority
+		<select
+			class="rounded-md border border-slate-300 bg-white px-3 py-2.5 text-slate-900 shadow-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+			name="priority"
+		>
+			<option value="normal">Normal</option>
+			<option value="high">High</option>
+			<option value="urgent">Urgent</option>
+		</select>
+	</label>
+	<label class="grid gap-1.5 text-sm font-semibold text-slate-800">
+		Affected page or URL
+		<input
+			class="rounded-md border border-slate-300 bg-white px-3 py-2.5 text-slate-900 shadow-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+			type="url"
+			name="page_url"
+			placeholder="https://example.com/page"
+		/>
+	</label>
+	<label class="grid gap-1.5 text-sm font-semibold text-slate-800">
+		What do you need help with?
+		<textarea
+			class="min-h-[140px] resize-y rounded-md border border-slate-300 bg-white px-3 py-2.5 text-slate-900 shadow-sm focus:border-emerald-600 focus:outline-none focus:ring-1 focus:ring-emerald-600"
+			name="message"
+			rows="6"
+			placeholder="Describe the issue or update request, and include any deadline."
+			required></textarea>
+	</label>
+	<input class="hidden" type="text" name="company_site" tabindex="-1" autocomplete="off" aria-hidden="true" />
+	<button class="btn btn-primary w-full cursor-pointer sm:w-auto" type="submit">Send Support Request</button>
+	<p class="m-0 text-xs leading-relaxed text-slate-500">
+		By submitting, you agree to our <a class="text-emerald-800 underline hover:text-emerald-900" href="/privacy-policy">Privacy Policy</a>.
+		We will only contact you about this support request.
+	</p>
+</form>

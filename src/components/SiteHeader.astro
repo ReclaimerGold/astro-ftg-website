@@ -5,6 +5,7 @@ const navItems = [
 	{ href: '/web-design', label: 'Web Design' },
 	{ href: '/process', label: 'Process' },
 	{ href: '/contact', label: 'Contact' },
+	{ href: '/support', label: 'Support' },
 	{ href: '/privacy-policy', label: 'Privacy' },
 ];
 ---
@@ -28,6 +29,9 @@ const navItems = [
 				}
 			</ul>
 		</nav>
-		<a class="btn btn-primary hidden md:inline-flex" href="/contact">Get a Free Quote</a>
+		<div class="hidden items-center gap-2 md:flex">
+			<a class="btn btn-secondary" href="/support">Support</a>
+			<a class="btn btn-primary" href="/contact">Get a Free Quote</a>
+		</div>
 	</div>
 </header>
