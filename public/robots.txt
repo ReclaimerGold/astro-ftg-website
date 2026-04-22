@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# API endpoints are form-submit handlers, not crawl targets.
+Disallow: /api/
+
+# Preferred crawl hints.
+Host: askdigmar.com
+Sitemap: https://askdigmar.com/sitemap-index.xml
